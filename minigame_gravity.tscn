@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbw610ne1h13y"]
+
+[ext_resource type="Texture2D" uid="uid://bxoxnm32wcawf" path="res://icon.svg" id="2_03apl"]
+[ext_resource type="Script" path="res://Gravity.gd" id="2_kd51m"]
+[ext_resource type="Script" path="res://Player.gd" id="3_4ro7b"]
+
+[sub_resource type="GDScript" id="GDScript_h4hvk"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GravitationalPull" type="Node" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="GravitationalPull"]
+script = SubResource("GDScript_h4hvk")
+
+[node name="Area2D" type="Area2D" parent="GravitationalPull/RigidBody2D"]
+script = ExtResource("2_kd51m")
+
+[node name="Node2" type="Node" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2"]
+gravity_scale = 0.0
+script = ExtResource("3_4ro7b")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2/RigidBody2D"]
+texture = ExtResource("2_03apl")
