@@ -23,3 +23,9 @@ func process_input(_delta):
 func apply_movement(direction):
 	var velocity = direction.normalized() * speed
 	linear_velocity = velocity
+
+
+func _on_grav_pull_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	var direction = Vector2()
+	direction.y = 1000000
+	apply_movement(direction)

@@ -1,4 +1,3 @@
 res://minigame_gravity.tscn
-res://GravityPoint.gd
-res://Player.gd
 res://Gravity.gd
+res://Player.gd
