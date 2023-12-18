@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbw610ne1h13y"]
+[gd_scene load_steps=8 format=3 uid="uid://dbw610ne1h13y"]
 
+[ext_resource type="Script" path="res://GravPull.gd" id="1_htsol"]
 [ext_resource type="Texture2D" uid="uid://bxoxnm32wcawf" path="res://icon.svg" id="2_03apl"]
 [ext_resource type="Script" path="res://Player.gd" id="3_4ro7b"]
+[ext_resource type="Texture2D" uid="uid://bh6sliohdeq2l" path="res://SwimGameFaceForward.png" id="3_ktqpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3upm"]
 size = Vector2(104, 110)
@@ -1270,34 +1272,55 @@ cache/0/200/0/kerning_overrides/200/0 = Vector2(0, 0)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="GravPull" type="Area2D" parent="."]
-position = Vector2(537, 284)
+[node name="Node" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GravPull"]
-position = Vector2(-2, 7)
+[node name="GravPull" type="Area2D" parent="Node"]
+position = Vector2(925, 491)
+script = ExtResource("1_htsol")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/GravPull"]
+position = Vector2(5, -4)
 shape = SubResource("RectangleShape2D_l3upm")
 
-[node name="Sprite2D" type="Sprite2D" parent="GravPull"]
-position = Vector2(-1.00003, 7.99998)
-scale = Vector2(0.712891, 0.722656)
+[node name="Sprite2D" type="Sprite2D" parent="Node/GravPull"]
+position = Vector2(5.99997, -7.99997)
+scale = Vector2(1, 1.014)
 texture = ExtResource("2_03apl")
 
-[node name="Player" type="RigidBody2D" parent="."]
+[node name="Player" type="RigidBody2D" parent="Node"]
 position = Vector2(247, 263)
 gravity_scale = 0.0
+lock_rotation = true
 freeze_mode = 1
 script = ExtResource("3_4ro7b")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(-2, 0)
+[node name="Sprite2D" type="Sprite2D" parent="Node/Player"]
+texture_filter = 1
+position = Vector2(9, 7)
+scale = Vector2(4, 4)
+texture = ExtResource("3_ktqpx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Player"]
+position = Vector2(3, 12)
+shape = SubResource("RectangleShape2D_ofe47")
+
+[node name="Item" type="RigidBody2D" parent="Node"]
+position = Vector2(818, 136)
+collision_layer = 2
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/Item"]
+position = Vector2(84, 1)
 scale = Vector2(0.734375, 0.71875)
 texture = ExtResource("2_03apl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-4, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Item"]
+position = Vector2(85, 0)
 shape = SubResource("RectangleShape2D_ofe47")
 
-[node name="label_died" type="RichTextLabel" parent="."]
+[node name="label_died" type="RichTextLabel" parent="Node"]
 visible = false
 offset_left = 138.0
 offset_top = 114.0
@@ -1307,20 +1330,4 @@ theme_override_fonts/normal_font = SubResource("FontFile_gcdun")
 theme_override_font_sizes/normal_font_size = 200
 text = "You Died!"
 
-[node name="Item" type="RigidBody2D" parent="."]
-position = Vector2(818, 136)
-collision_layer = 2
-collision_mask = 2
-mass = 0.01
-gravity_scale = 0.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Item"]
-position = Vector2(178, 28)
-scale = Vector2(0.734375, 0.71875)
-texture = ExtResource("2_03apl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
-position = Vector2(85, 0)
-shape = SubResource("RectangleShape2D_ofe47")
-
-[connection signal="body_entered" from="GravPull" to="Player" method="_on_grav_pull_body_entered"]
+[connection signal="body_entered" from="Node/GravPull" to="Node/Player" method="_on_grav_pull_body_entered"]

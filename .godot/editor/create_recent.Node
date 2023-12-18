@@ -1,3 +1,8 @@
+SubViewportContainer
+Node
+SubViewport
+Camera2D
+HBoxContainer
 RigidBody2D
 RichTextLabel
 Label
@@ -5,5 +10,4 @@ Area2D
 Node2D
 CollisionShape2D
 Sprite2D
-Node
 AnimatedSprite2D

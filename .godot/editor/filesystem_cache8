@@ -1,7 +1,10 @@
 2a60927148abd1d33b818b535e306557
-::res://::1701910254
-Gravity.gd::GDScript::-1::1701748228::0::1::::<>Area2D<>::
+::res://::1702932561
+GravPull.gd::GDScript::-1::1702925195::0::1::::<>Area2D<>::
 icon.svg::CompressedTexture2D::4031085756870035649::1695161788::1701744250::1::::<><>::
-minigame_gravity.tscn::PackedScene::7276797196106941904::1701786330::0::1::::<><>::uid://bxoxnm32wcawf<>res://Gravity.gd<>res://Player.gd
-Player.gd::GDScript::-1::1701748466::0::1::::<>RigidBody2D<>::
-TEST.tscn::PackedScene::6037189254133466787::1695162054::0::1::::<><>::
+main.gd::GDScript::-1::1702932481::0::1::::<>Node2D<>::
+main.tscn::PackedScene::6869583974903316085::1702932537::0::1::::<><>::res://main.gd<>res://SubViewport.gd
+minigame_gravity.tscn::PackedScene::7276797196106941904::1702932537::0::1::::<><>::res://GravPull.gd<>uid://bxoxnm32wcawf<>res://Player.gd<>uid://bh6sliohdeq2l
+Player.gd::GDScript::-1::1702924749::0::1::::<>RigidBody2D<>::
+SubViewport.gd::GDScript::-1::1702932537::0::1::::<>SubViewport<>::
+SwimGameFaceForward.png::CompressedTexture2D::2942851291274227601::1702922968::1702923053::1::::<><>::

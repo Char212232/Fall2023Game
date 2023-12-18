@@ -1,11 +1,10 @@
 # Player.gd
 extends RigidBody2D
 
-var speed : float = 400
+var speed : float = 300
 
 func _process(delta):
 	process_input(delta)
-	rotation_degrees = 0
 
 func process_input(_delta):
 	var direction = Vector2()
@@ -25,7 +24,6 @@ func process_input(_delta):
 	var gravPull = get_node("../GravPull")
 	var directionToGravPull = (gravPull.global_position - global_position).normalized()
 	var distanceToGravPull = global_position.distance_to(gravPull.global_position)
-	print("distance: ", distanceToGravPull)
 	# Adjust the gravitational pull strength based on the distance
 	var maxPullStrength = 400.0
 	var minPullStrength = 200.0
@@ -33,8 +31,7 @@ func process_input(_delta):
 	
 	# Apply the gravitational pull as a force or velocity
 	var finalforce = directionToGravPull * clamp(minPullStrength + distanceFactor * maxPullStrength, minPullStrength, maxPullStrength)
-	print_debug("finalforce: ", finalforce)
-	finalforce = finalforce*20
+	finalforce = finalforce*10
 	apply_force(finalforce, Vector2(0,0))
 
 func apply_movement(direction):
@@ -43,8 +40,7 @@ func apply_movement(direction):
 
 
 func _on_grav_pull_body_entered(_body):
-	print_debug("body entered")
-	get_node("../label_died").visible=true
+	#get_node("../label_died").visible=true
 	var vxd = sign(linear_velocity.x)
 	var vyd = sign(linear_velocity.y)
 	linear_velocity = Vector2(vxd*1000,vyd*1000)

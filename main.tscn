@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://c44xbrln31f8p"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_kudup"]
+
+[sub_resource type="GDScript" id="GDScript_vrte3"]
+
+[sub_resource type="GDScript" id="GDScript_lvdyr"]
+script/source = "extends SubViewport
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var scene = load(\"res://minigame_gravity.tscn\")
+	add_child(scene.instantiate())
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+"
+
+[node name="Main" type="Node2D"]
+position = Vector2(568, 306)
+script = ExtResource("1_kudup")
+
+[node name="Viewports" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TopLeft" type="SubViewportContainer" parent="Viewports"]
+layout_mode = 2
+script = SubResource("GDScript_vrte3")
+
+[node name="SubViewport" type="SubViewport" parent="Viewports/TopLeft"]
+handle_input_locally = false
+render_target_update_mode = 4
+script = SubResource("GDScript_lvdyr")
+
+[node name="Camera2D" type="Camera2D" parent="Viewports/TopLeft/SubViewport"]
+
+[node name="TopRight" type="SubViewportContainer" parent="Viewports"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="Viewports/TopRight"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="Viewports/TopRight/SubViewport"]
